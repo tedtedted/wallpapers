@@ -53,12 +53,8 @@ def main(subreddits=SUB):
 
                                                         full_path = format_name(title)
 
-                                                        with open(full_path, 'wb') as f:
-                                                                f.write(image.content)
+                                                        download_image(full_path)
 
-                                                                ext = mime.from_file(full_path).split('/')[1]
-
-                                                                file_name = f'{full_path}.{ext}'
                                                 else:
                                                         decline[(width, height)] += 1
 
@@ -68,13 +64,7 @@ def main(subreddits=SUB):
 
                                                 full_path = format_name(title, directory=MOBILE_SUBDIR)
 
-                                                with open(full_path, 'wb') as f:
-
-                                                        f.write(image.content)
-
-                                                        ext = mime.from_file(full_path).split('/')[1]
-
-                                                        file_name = f'{full_path}.{ext}'
+                                                download_image(full_path)
 
                         except:
                                 pass
@@ -94,6 +84,14 @@ def format_name(sub_file,directory=SUBDIR):
                 path = path[:-1]
 
         return path
+
+
+def download_image(full_path):
+        
+        with open(full_path, 'wb') as f:
+                f.write(image.content)
+                ext = mime.from_file(full_path).split('/')[1]
+                file_name = f'{full_path}.{ext}'
 
 
 if __name__ == '__main__':
