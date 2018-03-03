@@ -53,7 +53,7 @@ def main(subreddits=SUB):
 
                                                         full_path = format_name(title)
 
-                                                        download_image(full_path)
+                                                        download_image(full_path, image)
 
                                                 else:
                                                         decline[(width, height)] += 1
@@ -64,7 +64,7 @@ def main(subreddits=SUB):
 
                                                 full_path = format_name(title, directory=MOBILE_SUBDIR)
 
-                                                download_image(full_path)
+                                                download_image(full_path, image)
 
                         except:
                                 pass
@@ -86,8 +86,8 @@ def format_name(sub_file,directory=SUBDIR):
         return path
 
 
-def download_image(full_path):
-        
+def download_image(full_path, image):
+
         with open(full_path, 'wb') as f:
                 f.write(image.content)
                 ext = mime.from_file(full_path).split('/')[1]
